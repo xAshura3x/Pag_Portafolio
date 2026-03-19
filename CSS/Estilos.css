@@ -4,3 +4,24 @@ body {
     background: #0f172a;
     color: white;
 }
+
+.Text_barra{
+    color: cyan;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 30px;
+    background: #020617;
+}
+
+nav a{
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+nav a:hover{
+    color: cyan;
+}
