@@ -30,3 +30,30 @@ section {
     padding: 60px 20px;
     text-align: center;
 }
+
+.Contacto h1{
+    font-size: 40px;
+}
+
+.btn{
+    background: cyan;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.Grid{
+    display: grid;
+    gap: 20px;
+}
+
+.Grid-3{
+    grid-template-columns: repear(auto-fit, minmax(200px, 1fr));
+}
+
+.card{
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 12px;
+}
