@@ -57,3 +57,46 @@ section {
     padding: 20px;
     border-radius: 12px;
 }
+
+.Carrusel{
+    position: relative;
+    max-width: 600px;
+    margin: auto;
+}
+
+.Carrusel img{
+    width: 100%;
+    border-radius: 12px;
+    transition: opacity 0.5s ease;
+}
+
+.Carrusel button{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#antes{ left: 0;}
+#despues{ right: 0;}
+
+input, textarea{
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: none;
+    background: #334155;
+    color: white;
+}
+
+footer{
+    background: #020617;
+    padding: 20px;
+    text-align: center;
+    color: gray;
+}
