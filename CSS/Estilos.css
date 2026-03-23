@@ -100,3 +100,28 @@ footer{
     text-align: center;
     color: gray;
 }
+
+.Carrusel_overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 40%;
+    background: linear-gradient(to right, rgba(2,6,23,0.9), rgba(2,6,23,0.4), transparent);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.Carrusel_overlay h3{
+    color: cyan;
+    margin-bottom: 10px;
+}
+
+.Carrusel_overlay p{
+    color: #cbd5f5;
+    font-size: 14px;
+}
