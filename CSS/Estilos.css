@@ -1,41 +1,41 @@
-body {
+.mi-portafolio {
     margin: 0;
-    font-family: Ariel, sans-serif;
+    font-family: Arial, sans-serif;
     background: #0f172a;
     color: white;
 }
 
-.Text_barra{
-    color: cyan;
-}
-
-nav{
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 30px;
+/* Navbar */
+.mi-portafolio nav {
     background: #020617;
 }
 
-nav a{
+.Text_barra {
+    color: cyan;
+}
+
+.mi-portafolio nav a {
     color: white;
     margin-left: 15px;
     text-decoration: none;
 }
 
-nav a:hover{
+.mi-portafolio nav a:hover {
     color: cyan;
 }
 
-section {
-    padding: 60px 20px;
+/* Secciones */
+.mi-portafolio section {
+    padding: 20px 20px;
     text-align: center;
 }
 
-.Contacto h1{
+.Contacto h1 {
     font-size: 40px;
 }
 
-.btn{
+/* Botones */
+.mi-btn {
     background: cyan;
     padding: 10px 20px;
     border: none;
@@ -43,34 +43,27 @@ section {
     border-radius: 8px;
 }
 
-.Grid{
-    display: grid;
-    gap: 20px;
-}
-
-.Grid-3{
-    grid-template-columns: repear(auto-fit, minmax(200px, 1fr));
-}
-
-.card{
+/* Cards */
+.mi-card {
     background: #1e293b;
     padding: 20px;
     border-radius: 12px;
 }
 
-.Carrusel{
+/* Carrusel */
+.Carrusel {
     position: relative;
     max-width: 600px;
     margin: auto;
 }
 
-.Carrusel img{
+.Carrusel img {
     width: 100%;
     border-radius: 12px;
     transition: opacity 0.5s ease;
 }
 
-.Carrusel button{
+.Carrusel button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -81,10 +74,12 @@ section {
     cursor: pointer;
 }
 
-#antes{ left: 0;}
-#despues{ right: 0;}
+#antes { left: 0; }
+#despues { right: 0; }
 
-input, textarea{
+/* Formulario */
+.mi-portafolio input,
+.mi-portafolio textarea {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
@@ -94,14 +89,16 @@ input, textarea{
     color: white;
 }
 
-footer{
+/* Footer */
+footer {
     background: #020617;
     padding: 20px;
     text-align: center;
     color: gray;
 }
 
-.Carrusel_overlay{
+/* Overlay */
+.Carrusel_overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -116,12 +113,35 @@ footer{
     border-bottom-left-radius: 12px;
 }
 
-.Carrusel_overlay h3{
+.Carrusel_overlay h3 {
     color: cyan;
     margin-bottom: 10px;
 }
 
-.Carrusel_overlay p{
+.Carrusel_overlay p {
     color: #cbd5f5;
     font-size: 14px;
+}
+
+.mi-img {
+    height: 650px;
+    object-fit: cover;
+}
+
+.carousel-item {
+    position: relative;
+}
+
+.mi-overlay {
+    position: absolute;
+    top: 45%;
+    left: 40%;
+    height: 100%;
+    width: 40%;
+
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    padding: 20px;
 }
