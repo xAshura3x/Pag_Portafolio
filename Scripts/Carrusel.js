@@ -16,42 +16,36 @@ const Imagenes = [
     }
 ];
 
-let index = 0;
+const contenedor = document.querySelector("#miCarrusel .carousel-inner");
+const indicadores = document.querySelector("#miCarrusel .carousel-indicators");
 
-const Img = document.getElementById("Img_Carrusel");
-const titulo = document.getElementById("Titulo_overlay");
-const texto = document.getElementById("Texto_overlay");
+Imagenes.forEach((item, i) => {
 
-function Cambiar_imagenes(){
+    contenedor.innerHTML += `
+        <div class="carousel-item ${i === 0 ? "active" : ""}">
+            <div class="mi-slide">
 
-    if(!Imagenes[index] || !Imagenes[index].img) return;
+                <div class="mi-img-container">
+                    <img src="${item.img}" class="mi-img">
+                </div>
 
-    Img.style.opacity = 0;
+                <div class="mi-info">
+                    <h3>${item.titulo}</h3>
+                    <p>${item.texto}</p>
+                </div>
 
-    setTimeout(() =>{
-        Img.src = Imagenes[index].img;
+            </div>
+        </div>
+    `;
 
-        titulo.textContent = Imagenes[index].titulo;
-        texto.textContent = Imagenes[index].texto;
-
-        Img.style.opacity = 1;
-    }, 200);
-}
-
-document.getElementById("despues").onclick = () => {
-    index = (index + 1) % Imagenes.length;
-    Cambiar_imagenes();
-};
-
-document.getElementById("antes").onclick = () => {
-    index = (index - 1 + Imagenes.length) % Imagenes.length;
-    Cambiar_imagenes();
-};
-
-setInterval(() => {
-    index = (index + 1) % Imagenes.length;
-    Cambiar_imagenes();
-}, 4000);
+    indicadores.innerHTML += `
+        <button type="button"
+            data-bs-target="#miCarrusel"
+            data-bs-slide-to="${i}"
+            class="${i === 0 ? "active" : ""}">
+        </button>
+    `;
+});
 
 function enviarForm(){
     alert("Mensaje enviado (simulacion)");
