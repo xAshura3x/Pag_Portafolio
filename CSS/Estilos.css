@@ -161,3 +161,36 @@ footer {
     text-align: center;
     color: gray;
 }
+
+.mi-modal {
+    background: #020617;
+    color: white;
+    border-radius: 12px;
+}
+
+.modal-header {
+    border-bottom: 1px solid #1e293b;
+}
+
+.modal-title {
+    color: cyan;
+}
+
+.btn-close {
+    filter: invert(1);
+}
+
+.mi-footer {
+    background: #020617;
+    color: #cbd5f5;
+    padding: 40px 20px;
+}
+
+.mi-footer h5 {
+    color: cyan;
+    margin-bottom: 10px;
+}
+
+.mi-footer p {
+    margin: 5px 0;
+}
