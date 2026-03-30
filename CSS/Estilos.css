@@ -11,7 +11,7 @@
 }
 
 .Text_barra {
-    color: cyan;
+    color: #cbd5f5;
 }
 
 .mi-portafolio nav a {
@@ -21,7 +21,7 @@
 }
 
 .mi-portafolio nav a:hover {
-    color: cyan;
+    color: #2b70fac6;
 }
 
 /* Secciones */
@@ -36,11 +36,13 @@
 
 /* Botones */
 .mi-btn {
-    background: cyan;
+    background: #2b70fac6;
     padding: 10px 20px;
     border: none;
     cursor: pointer;
     border-radius: 8px;
+    color:white;
+    font-size: 20px;
 }
 
 /* Cards */
@@ -83,7 +85,7 @@
 }
 
 .mi-info h3 {
-    color: cyan;
+    color: #cbd5f5;
     font-size: 28px;
     margin-bottom: 10px;
 }
@@ -93,7 +95,7 @@
 }
 
 .carousel-indicators button {
-    background-color: cyan;
+    background-color: #2b70fac6;
 }
 
 .carousel-indicators .active {
@@ -173,7 +175,7 @@ footer {
 }
 
 .modal-title {
-    color: cyan;
+    color: #2b70fac6;
 }
 
 .btn-close {
@@ -187,7 +189,7 @@ footer {
 }
 
 .mi-footer h5 {
-    color: cyan;
+    color: #cbd5f5;
     margin-bottom: 10px;
 }
 
