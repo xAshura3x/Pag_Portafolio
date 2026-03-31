@@ -2,26 +2,29 @@
 
 Portafolio web de la empresa OlympusDev / Guateplaya Inc.
 
-## Descripción
-Sitio web estático que muestra los servicios de desarrollo web de la empresa, incluyendo portafolio de proyectos, opiniones de clientes y formulario de contacto.
+## Descripcion
+Sitio web estatico que muestra servicios de desarrollo web, portafolio de proyectos, opiniones de clientes y formulario de contacto.
 
-## Tecnologías
+## Tecnologias
 - HTML5
 - CSS3
 - JavaScript (ES6)
 - Bootstrap 5.3.3
 
 ## Estructura del Proyecto
-- `index.html`: Página de redirección
-- `HTML/Pag_principal.html`: Página principal
+- `index.html`: Pagina de redireccion
+- `HTML/Pag_principal.html`: Pagina principal con carrusel de proyectos destacados
+- `HTML/Proyectos.html`: Catalogo completo de proyectos con popup de detalle
 - `CSS/Estilos.css`: Estilos personalizados
-- `Scripts/Carrusel.js`: JavaScript para el carrusel
-- `public/`: Imágenes del portafolio
+- `Scripts/ProyectosData.js`: Datos compartidos de todos los proyectos
+- `Scripts/Carrusel.js`: JavaScript para el carrusel de destacados
+- `Scripts/Proyectos.js`: JavaScript para renderizar catalogo y modal
+- `public/`: Imagenes del portafolio
 
-## Instalación
+## Instalacion
 1. Clona el repositorio
 2. Abre `index.html` en un navegador web
 
 ## Contacto
 - Email: contacto@guateplaya.com
-- Teléfono: +56 9 1234 5678
+- Telefono: +56 9 1234 5678

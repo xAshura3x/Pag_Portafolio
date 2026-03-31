@@ -84,6 +84,16 @@
     font-size: 20px;
 }
 
+.mi-btn-link {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.mi-btn-link:hover {
+    color: white;
+    background: #1d4ed8;
+}
+
 /* Cards */
 .mi-card {
     background: #1e293b;
@@ -141,6 +151,56 @@
     background-color: white;
 }
 
+/* Catalogo de proyectos */
+.catalogo-card {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #1e293b;
+    color: white;
+    text-align: left;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.catalogo-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(2, 6, 23, 0.4);
+}
+
+.catalogo-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.catalogo-body {
+    padding: 16px;
+}
+
+.catalogo-body h3 {
+    color: #cbd5f5;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.catalogo-body p {
+    margin: 0;
+    color: #cbd5f5;
+}
+
+.modal-proyecto-img {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
 /*Para telefono*/
 @media (max-width: 768px) {
 
@@ -182,6 +242,14 @@
 
     .mi-info p {
         max-width: 300px;
+    }
+
+    .catalogo-img {
+        height: 180px;
+    }
+
+    .catalogo-body h3 {
+        font-size: 20px;
     }
 }
 
