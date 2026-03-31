@@ -12,16 +12,54 @@
 
 .Text_barra {
     color: #cbd5f5;
-    font-size: 50px;
+    font-size: 4vw;
+    margin-left: 1vw;
+}
+
+.yellow {
+    color: #fbbf24;
+}
+
+.navbar{
+    padding-left: 0;
 }
 
 .mi-portafolio nav a {
     color: white;
+    margin-right: 15px;
     margin-left: 15px;
     text-decoration: none;
+    font-size: 1.2vw;
 }
 
 .mi-portafolio nav a:hover {
+    color: #2b70fac6;
+}
+
+/* Dropdown móvil */
+.mi-dropdown-btn {
+    background: none;
+    border: none;
+    color: white;
+}
+
+.mi-dropdown-menu {
+    background: #020617;
+    border: 1px solid #1e293b;
+    min-width: 200px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.mi-dropdown-menu .dropdown-item {
+    color: white;
+    padding: 10px 20px;
+    font-size: 24px;
+    border-radius: 0;
+}
+
+.mi-dropdown-menu .dropdown-item:hover {
+    background: #1e293b;
     color: #2b70fac6;
 }
 
@@ -117,7 +155,7 @@
     }
 
     .mi-img {
-        height: 60vh;
+        height: 50vh;
     }
 
     .mi-info {

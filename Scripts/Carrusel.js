@@ -26,7 +26,7 @@ Imagenes.forEach((item, i) => {
             <div class="mi-slide">
 
                 <div class="mi-img-container">
-                    <img src="${item.img}" class="mi-img">
+                    <img src="${item.img}" class="mi-img" alt="${item.titulo}">
                 </div>
 
                 <div class="mi-info">
@@ -48,6 +48,21 @@ Imagenes.forEach((item, i) => {
 });
 
 function enviarForm(){
-    alert("Mensaje enviado (simulacion)");
+    const nombre = document.querySelector('input[type="text"]').value.trim();
+    const email = document.querySelector('input[type="email"]').value.trim();
+    const mensaje = document.querySelector('textarea').value.trim();
+
+    if (!nombre || !email || !mensaje) {
+        alert("Por favor, completa todos los campos.");
+        return false;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        alert("Por favor, ingresa un email válido.");
+        return false;
+    }
+
+    alert("Mensaje enviado (simulación)");
+    // Aquí podrías agregar código para enviar el formulario realmente
     return false;
 }
