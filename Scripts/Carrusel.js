@@ -36,10 +36,24 @@ if (contenedor && indicadores) {
     });
 }
 
-function enviarForm(){
-    const nombre = document.querySelector('input[type="text"]').value.trim();
-    const email = document.querySelector('input[type="email"]').value.trim();
-    const mensaje = document.querySelector('textarea').value.trim();
+function enviarForm(event){
+    if (event) {
+        event.preventDefault();
+    }
+
+    const formulario = event?.target?.closest("form") || document.querySelector("#formContacto");
+
+    if (!formulario) {
+        return false;
+    }
+
+    const nombreInput = formulario.querySelector('input[name="nombre"]');
+    const emailInput = formulario.querySelector('input[name="email"]');
+    const mensajeInput = formulario.querySelector('textarea[name="mensaje"]');
+
+    const nombre = nombreInput ? nombreInput.value.trim() : "";
+    const email = emailInput ? emailInput.value.trim() : "";
+    const mensaje = mensajeInput ? mensajeInput.value.trim() : "";
 
     if (!nombre || !email || !mensaje) {
         alert("Por favor, completa todos los campos.");
@@ -53,5 +67,6 @@ function enviarForm(){
 
     alert("Mensaje enviado (simulación)");
     // Aquí podrías agregar código para enviar el formulario realmente
+    formulario.reset();
     return false;
 }

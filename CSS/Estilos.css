@@ -12,8 +12,43 @@
 
 .Text_barra {
     color: #cbd5f5;
-    font-size: 4vw;
-    margin-left: 1vw;
+    font-size: clamp(1.6rem, 2.8vw, 2.3rem);
+    margin-left: 0.5rem;
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+.mi-portafolio nav a.Text_barra-link {
+    color: inherit;
+    text-decoration: none;
+    font-size: inherit;
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: clamp(0.35rem, 1vw, 0.6rem);
+    line-height: inherit;
+}
+
+.logo-navbar {
+    display: block;
+    width: auto;
+    height: clamp(40px, 5.2vw, 56px);
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.logo-brand-text {
+    display: inline-block;
+}
+
+.mi-portafolio nav a.Text_barra-link:hover {
+    color: #cbd5f5;
+}
+
+.mi-portafolio nav a.Text_barra-link:focus-visible {
+    outline: 2px solid #fbbf24;
+    outline-offset: 4px;
+    border-radius: 6px;
 }
 
 .yellow {
@@ -29,7 +64,7 @@
     margin-right: 15px;
     margin-left: 15px;
     text-decoration: none;
-    font-size: 1.2vw;
+    font-size: clamp(1rem, 1.2vw, 1.125rem);
 }
 
 .mi-portafolio nav a:hover {
@@ -38,29 +73,113 @@
 
 /* Dropdown móvil */
 .mi-dropdown-btn {
-    background: none;
-    border: none;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    border: 1px solid rgba(148, 163, 184, 0.45);
+    background: linear-gradient(180deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.95));
     color: white;
+    box-shadow: 0 8px 20px rgba(2, 6, 23, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.mi-dropdown-btn:hover {
+    border-color: rgba(96, 165, 250, 0.75);
+    box-shadow: 0 10px 24px rgba(2, 6, 23, 0.45);
+}
+
+.mi-dropdown-btn:active {
+    transform: scale(0.97);
+}
+
+.mi-dropdown-btn:focus-visible {
+    outline: 2px solid #fbbf24;
+    outline-offset: 2px;
+}
+
+.mi-hamburger {
+    position: relative;
+    width: 18px;
+    height: 2px;
+    border-radius: 999px;
+    background: #e2e8f0;
+    transition: background 0.2s ease;
+}
+
+.mi-hamburger::before,
+.mi-hamburger::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 18px;
+    height: 2px;
+    border-radius: 999px;
+    background: #e2e8f0;
+    transition: transform 0.2s ease;
+}
+
+.mi-hamburger::before {
+    top: -6px;
+}
+
+.mi-hamburger::after {
+    top: 6px;
+}
+
+.mi-dropdown-btn[aria-expanded="true"] .mi-hamburger {
+    background: transparent;
+}
+
+.mi-dropdown-btn[aria-expanded="true"] .mi-hamburger::before {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.mi-dropdown-btn[aria-expanded="true"] .mi-hamburger::after {
+    transform: translateY(-6px) rotate(-45deg);
 }
 
 .mi-dropdown-menu {
-    background: #020617;
-    border: 1px solid #1e293b;
-    min-width: 200px;
-    border-radius: 4px;
+    background: rgba(2, 6, 23, 0.96);
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    min-width: clamp(220px, 65vw, 280px);
+    border-radius: 14px;
     overflow: hidden;
+    margin-top: 10px;
+    padding: 6px;
+    box-shadow: 0 20px 36px rgba(2, 6, 23, 0.5);
+    backdrop-filter: blur(6px);
 }
 
 .mi-dropdown-menu .dropdown-item {
-    color: white;
-    padding: 10px 20px;
-    font-size: 24px;
-    border-radius: 0;
+    color: #e2e8f0;
+    padding: 12px 14px;
+    font-size: clamp(0.95rem, 3.8vw, 1.05rem);
+    border-radius: 10px;
+    font-weight: 500;
+    margin: 0;
+    text-align: left;
+    white-space: normal;
+    line-height: 1.25;
 }
 
 .mi-dropdown-menu .dropdown-item:hover {
-    background: #1e293b;
-    color: #2b70fac6;
+    background: rgba(30, 58, 138, 0.42);
+    color: #bfdbfe;
+}
+
+.mi-dropdown-menu .dropdown-item:focus-visible {
+    background: rgba(30, 58, 138, 0.42);
+    color: #bfdbfe;
+    outline: none;
+}
+
+.mi-dropdown-menu .dropdown-item:active {
+    background: rgba(37, 99, 235, 0.6);
+    color: #ffffff;
 }
 
 /* Secciones */
@@ -71,6 +190,44 @@
 
 .Contacto h1 {
     font-size: 40px;
+}
+
+.Contacto {
+    padding-bottom: 8px;
+}
+
+.Contacto p {
+    margin-bottom: 0;
+}
+
+/* Ajuste sutil de separación y escala en servicios */
+#servicios {
+    padding-top: 8px;
+}
+
+#servicios h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: clamp(1.5rem, 2.2vw, 1.85rem);
+}
+
+#servicios .servicios-row {
+    margin-top: 0.85rem !important;
+}
+
+#servicios .mi-card {
+    padding: 18px;
+}
+
+#servicios .mi-card h3 {
+    margin: 0 0 8px;
+    font-size: clamp(1.08rem, 1.6vw, 1.22rem);
+}
+
+#servicios .mi-card p {
+    margin: 0;
+    font-size: 0.96rem;
+    line-height: 1.4;
 }
 
 /* Botones */
@@ -99,6 +256,17 @@
     background: #1e293b;
     padding: 20px;
     border-radius: 12px;
+}
+
+@media (min-width: 768px) {
+    .servicios-row > [class*="col-"] {
+        display: flex;
+    }
+
+    .servicio-card {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .carousel-item {
@@ -292,14 +460,37 @@ footer {
 .mi-footer {
     background: #020617;
     color: #cbd5f5;
-    padding: 40px 20px;
+    padding: clamp(18px, 2.5vw, 28px) 20px;
+    font-size: 0.95rem;
+}
+
+.mi-footer .row {
+    row-gap: 0.5rem;
 }
 
 .mi-footer h5 {
     color: #cbd5f5;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
+    font-size: 1.05rem;
 }
 
 .mi-footer p {
-    margin: 5px 0;
+    margin: 3px 0;
+    line-height: 1.4;
+}
+
+.mi-footer hr {
+    margin: 12px 0;
+    opacity: 0.2;
+}
+
+@media (max-width: 768px) {
+    .mi-footer {
+        padding: 16px;
+    }
+
+    .mi-footer h5 {
+        font-size: 1rem;
+        margin-bottom: 4px;
+    }
 }
