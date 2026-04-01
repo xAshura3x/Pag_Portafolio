@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 .mi-portafolio {
+    --amarillo-boton-30: rgba(242, 183, 5, 0.3);
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: "Inter", sans-serif;
     background: #0f172a;
     color: white;
 }
@@ -68,7 +71,7 @@
 }
 
 .mi-portafolio nav a:hover {
-    color: #2b70fac6;
+    color: #fbbf24;
 }
 
 /* Dropdown móvil */
@@ -184,8 +187,12 @@
 
 /* Secciones */
 .mi-portafolio section {
-    padding: 20px;
+    padding: clamp(20px, 3vw, 30px) 20px;
     text-align: center;
+}
+
+.mi-portafolio section + section {
+    margin-top: clamp(6px, 1vw, 10px);
 }
 
 .Contacto h1 {
@@ -193,7 +200,8 @@
 }
 
 .Contacto {
-    padding-bottom: 8px;
+    padding-top: clamp(20px, 3vw, 28px);
+    padding-bottom: clamp(10px, 1.8vw, 16px);
 }
 
 .Contacto p {
@@ -202,7 +210,7 @@
 
 /* Ajuste sutil de separación y escala en servicios */
 #servicios {
-    padding-top: 8px;
+    padding-top: clamp(8px, 1.4vw, 14px);
 }
 
 #servicios h2 {
@@ -232,13 +240,25 @@
 
 /* Botones */
 .mi-btn {
-    background: #2b70fac6;
+    background: #f2b705;    
     padding: 10px 20px;
     border: none;
     cursor: pointer;
     border-radius: 8px;
     color:white;
     font-size: 20px;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(2, 6, 23, 0.55);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+}
+
+.mi-btn:hover {
+    transform: scale(1.04);
+    box-shadow: 0 10px 20px rgba(2, 6, 23, 0.35), 0 0 16px rgba(242, 183, 5, 0.45);
+}
+
+.mi-btn:active {
+    transform: scale(0.98);
 }
 
 .mi-btn-link {
@@ -249,6 +269,11 @@
 .mi-btn-link:hover {
     color: white;
     background: #1d4ed8;
+}
+
+.mi-btn-catalogo:hover {
+    color: white;
+    background: #f2b705;
 }
 
 /* Cards */
@@ -273,25 +298,41 @@
     position: relative;
 }
 
+#miCarrusel {
+    margin: clamp(10px, 2vw, 20px) clamp(4px, 1.5vw, 18px);
+    padding: clamp(6px, 1.2vw, 10px);
+    border-radius: 20px;
+    background: #020617;
+    border: 1px solid #020617;
+}
+
+#miCarrusel .carousel-inner {
+    border-radius: 0;
+    overflow: hidden;
+}
+
 .mi-slide {
     display: flex;
-    height: 500px;
+    height: 450px;
 }
 
 .mi-img-container {
-    width: 50%;
+    width: 60%;
+    height: 100%;
+    display: flex;
+    gap: 5px;
 }
 
 .mi-img {
-    width: 100%;
+    width: calc((100% - 5px) / 2);
     height: 100%;
     object-fit: cover;
 }
 
 .mi-info {
-    width: 50%;
+    width: 40%;
     background: #020617;
-    color: white;
+    color: #cbd5f5;
 
     display: flex;
     flex-direction: column;
@@ -308,6 +349,13 @@
 }
 
 .mi-info p {
+    color: #cbd5f5;
+}
+
+.mi-info .mi-tecnologias {
+    margin-top: 8px;
+    font-size: 0.96rem;
+    font-weight: 600;
     color: #cbd5f5;
 }
 
@@ -372,6 +420,16 @@
 /*Para telefono*/
 @media (max-width: 768px) {
 
+    #miCarrusel {
+        margin: 12px 8px;
+        padding: 8px;
+        border-radius: 14px;
+    }
+
+    #miCarrusel .carousel-inner {
+        border-radius: 0;
+    }
+
     .mi-slide {
         flex-direction: column;
         height: auto;
@@ -380,10 +438,16 @@
 
     .mi-img-container {
         width: 100%;
+        display: block;
     }
 
     .mi-img {
-        height: 50vh;
+        width: 100%;
+        height: 38vh;
+    }
+
+    .mi-img-secondary {
+        display: none;
     }
 
     .mi-info {
@@ -402,14 +466,17 @@
 
         text-align: center;
         padding: 20px;
+        color: white;
     }
 
     .mi-info h3 {
         font-size: 24px;
+        color: white;
     }
 
     .mi-info p {
         max-width: 300px;
+        color: white;
     }
 
     .catalogo-img {
@@ -494,3 +561,4 @@ footer {
         margin-bottom: 4px;
     }
 }
+

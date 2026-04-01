@@ -1,5 +1,12 @@
 const contenedor = document.querySelector("#miCarrusel .carousel-inner");
 const indicadores = document.querySelector("#miCarrusel .carousel-indicators");
+const EMAILJS_CONFIG = {
+    publicKey: "HI-92bgvDkJBix5R1",
+    serviceId: "service_5bphcwa",
+    templateId: "template_asil4fg",
+    destinatarios: ["osmarchantg@gmail.com", "bryanmunos490@gmail.com"]
+};
+
 const proyectosDisponibles = typeof proyectos !== "undefined" && Array.isArray(proyectos)
     ? proyectos
     : [];
@@ -14,11 +21,13 @@ if (contenedor && indicadores) {
 
                     <div class="mi-img-container">
                         <img src="${item.img}" class="mi-img" alt="${item.titulo}">
+                        <img src="${item.imgSecundaria || item.img}" class="mi-img mi-img-secondary" alt="${item.titulo} - vista 2">
                     </div>
 
                     <div class="mi-info">
                         <h3>${item.titulo}</h3>
                         <p>${item.resumen}</p>
+                        ${item.tecnologias ? `<p class="mi-tecnologias">Tecnologias: ${item.tecnologias}</p>` : ""}
                     </div>
 
                 </div>
@@ -36,7 +45,22 @@ if (contenedor && indicadores) {
     });
 }
 
-function enviarForm(event){
+function emailJsNoConfigurado() {
+    return (
+        EMAILJS_CONFIG.publicKey.startsWith("REEMPLAZAR_") ||
+        EMAILJS_CONFIG.serviceId.startsWith("REEMPLAZAR_") ||
+        EMAILJS_CONFIG.templateId.startsWith("REEMPLAZAR_")
+    );
+}
+
+function obtenerFechaEnvio() {
+    return new Date().toLocaleString("es-CL", {
+        timeZone: "America/Santiago",
+        hour12: false
+    });
+}
+
+async function enviarForm(event){
     if (event) {
         event.preventDefault();
     }
@@ -65,8 +89,68 @@ function enviarForm(event){
         return false;
     }
 
-    alert("Mensaje enviado (simulación)");
-    // Aquí podrías agregar código para enviar el formulario realmente
-    formulario.reset();
+    if (emailJsNoConfigurado()) {
+        alert("Configura PUBLIC_KEY, SERVICE_ID y TEMPLATE_ID de EmailJS en Scripts/Carrusel.js.");
+        return false;
+    }
+
+    if (typeof emailjs === "undefined") {
+        alert("No se cargó la librería de EmailJS.");
+        return false;
+    }
+
+    const submitBtn = formulario.querySelector('button[type="submit"]');
+    const textoOriginal = submitBtn ? submitBtn.textContent : "Enviar";
+
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Enviando...";
+    }
+
+    const templateParams = {
+        to_email: EMAILJS_CONFIG.destinatarios.join(", "),
+        from_name: nombre,
+        from_email: email,
+        reply_to: email,
+        message: mensaje,
+        nombre,
+        email,
+        solicitante_nombre: nombre,
+        solicitante_email: email,
+        mensaje,
+        datos_solicitud: `Nombre: ${nombre}\nCorreo: ${email}\nMensaje: ${mensaje}`,
+        fecha_envio: obtenerFechaEnvio(),
+        subject: "Nuevo mensaje desde el formulario de contacto"
+    };
+
+    try {
+        emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey });
+
+        await emailjs.send(
+            EMAILJS_CONFIG.serviceId,
+            EMAILJS_CONFIG.templateId,
+            templateParams
+        );
+
+        alert("Mensaje enviado correctamente.");
+        formulario.reset();
+
+        const modalEl = document.querySelector("#modalContacto");
+        if (modalEl && typeof bootstrap !== "undefined") {
+            const modal = bootstrap.Modal.getInstance(modalEl);
+            if (modal) {
+                modal.hide();
+            }
+        }
+    } catch (error) {
+        console.error("Error al enviar con EmailJS:", error);
+        alert("No se pudo enviar el mensaje. Inténtalo nuevamente.");
+    } finally {
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = textoOriginal;
+        }
+    }
+
     return false;
 }
