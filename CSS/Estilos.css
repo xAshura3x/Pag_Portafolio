@@ -195,17 +195,49 @@
     margin-top: clamp(6px, 1vw, 10px);
 }
 
-.Contacto h1 {
-    font-size: 40px;
-}
-
 .Contacto {
     padding-top: clamp(20px, 3vw, 28px);
     padding-bottom: clamp(10px, 1.8vw, 16px);
 }
 
+.portada-contacto {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.portada-imagen-wrap {
+    width: 100%;
+    max-width: clamp(240px, 31vw, 430px);
+    margin-right: auto;
+    border-radius: 0;
+    overflow: visible;
+    border: none;
+    box-shadow: none;
+}
+
+.portada-imagen {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.portada-texto {
+    max-width: 560px;
+    text-align: left;
+    margin-left: auto;
+}
+
+.Contacto h1 {
+    font-size: clamp(2rem, 3.2vw, 2.7rem);
+    margin-bottom: 10px;
+}
+
 .Contacto p {
     margin-bottom: 0;
+    color: #cbd5f5;
+    font-size: clamp(1rem, 1.2vw, 1.12rem);
+    line-height: 1.5;
 }
 
 /* Ajuste sutil de separación y escala en servicios */
@@ -236,6 +268,80 @@
     margin: 0;
     font-size: 0.96rem;
     line-height: 1.4;
+}
+
+#tecnologias {
+    padding-top: clamp(8px, 1.4vw, 14px);
+}
+
+#tecnologias h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: clamp(1.5rem, 2.2vw, 1.85rem);
+}
+
+.tecnologias-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: clamp(14px, 2vw, 20px);
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tech-card {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 120px;
+    padding: 16px;
+    border-radius: 12px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.tech-card img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    filter: grayscale(1) contrast(1.05);
+    transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.tech-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 18px rgba(2, 6, 23, 0.35);
+    border-color: #475569;
+}
+
+.tech-card:hover img {
+    filter: grayscale(0);
+    transform: scale(1.05);
+}
+
+.tech-tooltip {
+    position: absolute;
+    left: 50%;
+    bottom: -34px;
+    transform: translateX(-50%) translateY(6px);
+    opacity: 0;
+    pointer-events: none;
+    background: #0f172a;
+    color: #e2e8f0;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    line-height: 1;
+    white-space: nowrap;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.tech-card:hover .tech-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
 }
 
 /* Botones */
@@ -419,6 +525,44 @@
 
 /*Para telefono*/
 @media (max-width: 768px) {
+
+    .tecnologias-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .tech-card {
+        min-height: 104px;
+    }
+
+    .tech-card img {
+        width: 62px;
+        height: 62px;
+    }
+
+    .tech-tooltip {
+        bottom: -30px;
+        font-size: 0.8rem;
+    }
+
+    .portada-imagen-wrap {
+        max-width: 320px;
+        margin: 0 auto;
+    }
+
+    .portada-imagen {
+        height: auto;
+        max-height: 360px;
+    }
+
+    .portada-texto {
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .Contacto h1 {
+        font-size: clamp(1.8rem, 8vw, 2.3rem);
+    }
 
     #miCarrusel {
         margin: 12px 8px;
