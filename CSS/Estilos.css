@@ -252,22 +252,271 @@
 }
 
 #servicios .servicios-row {
-    margin-top: 0.85rem !important;
+    margin-top: 1rem !important;
+    align-items: stretch;
 }
 
-#servicios .mi-card {
-    padding: 18px;
+#servicios .servicio-card {
+    min-height: 295px;
+    height: 100%;
+    padding: 22px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 12px;
+    text-align: left;
 }
 
-#servicios .mi-card h3 {
-    margin: 0 0 8px;
-    font-size: clamp(1.08rem, 1.6vw, 1.22rem);
-}
-
-#servicios .mi-card p {
+#servicios .servicio-card h3 {
     margin: 0;
-    font-size: 0.96rem;
-    line-height: 1.4;
+    font-size: clamp(1.1rem, 1.6vw, 1.24rem);
+}
+
+#servicios .servicio-card p {
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.62;
+    color: #cbd5f5;
+}
+
+#opiniones {
+    padding-top: clamp(8px, 1.4vw, 14px);
+}
+
+#opiniones h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: clamp(1.5rem, 2.2vw, 1.85rem);
+}
+
+#opiniones .opiniones-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+}
+
+.opiniones-resumen {
+    max-width: 430px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 22px;
+}
+
+.rating-gauge {
+    --rating: 0;
+    --max-rating: 5;
+    --angle: calc((var(--rating) / var(--max-rating)) * 180deg);
+    width: clamp(190px, 28vw, 230px);
+    height: clamp(95px, 14vw, 115px);
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.rating-gauge-circle {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: conic-gradient(
+        from 270deg,
+        #f2b705 0deg var(--angle),
+        #334155 var(--angle) 180deg,
+        transparent 180deg 360deg
+    );
+    -webkit-mask: radial-gradient(circle, transparent calc(50% - 11px), #000 calc(50% - 10px));
+    mask: radial-gradient(circle, transparent calc(50% - 11px), #000 calc(50% - 10px));
+}
+
+.rating-gauge-center {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.rating-gauge-value {
+    font-size: clamp(1.45rem, 2.4vw, 1.8rem);
+    font-weight: 700;
+    color: #e2e8f0;
+    line-height: 1;
+}
+
+.rating-gauge-max {
+    font-size: 0.9rem;
+    color: #94a3b8;
+}
+
+.rating-gauge-caption {
+    margin: 0.55rem 0 0;
+    font-size: 0.94rem;
+    color: #cbd5f5;
+}
+
+#opiniones .opiniones-row {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.opinion-card {
+    min-height: 180px;
+    padding: 22px 24px;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 20px;
+    text-align: left;
+}
+
+.opinion-info {
+    flex: 1;
+}
+
+.opinion-info h3 {
+    margin: 0 0 6px;
+    font-size: clamp(1.1rem, 1.6vw, 1.24rem);
+}
+
+.opinion-rating {
+    margin: 0 0 10px;
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: #f2b705;
+}
+
+.opinion-comment {
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.62;
+    color: #cbd5f5;
+}
+
+.opinion-stars {
+    min-width: 132px;
+    padding-left: 16px;
+    border-left: 1px solid #334155;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.opinion-stars .stars {
+    color: #f2b705;
+    letter-spacing: 2px;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.opinion-stars .score {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #e2e8f0;
+}
+
+@media (min-width: 992px) {
+    #opiniones .opiniones-layout {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .opiniones-resumen {
+        flex: 0 0 300px;
+        max-width: 300px;
+        margin: 0;
+    }
+
+    #opiniones .opiniones-row {
+        flex: 1;
+        max-width: none;
+        margin: 0;
+    }
+}
+
+#clientes {
+    padding-top: clamp(8px, 1.4vw, 14px);
+}
+
+#clientes h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: clamp(1.5rem, 2.2vw, 1.85rem);
+}
+
+.clientes-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: clamp(14px, 2vw, 20px);
+    max-width: 980px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cliente-card {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 108px;
+    padding: 14px;
+    border-radius: 12px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.cliente-card img {
+    width: 100%;
+    max-width: 128px;
+    height: 40px;
+    object-fit: contain;
+    filter: grayscale(1) contrast(1.05);
+    transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.cliente-card[aria-label="Samsung"] img {
+    max-width: 156px;
+    height: 52px;
+}
+
+.cliente-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 18px rgba(2, 6, 23, 0.35);
+    border-color: #475569;
+}
+
+.cliente-card:hover img {
+    filter: grayscale(0);
+    transform: scale(1.05);
+}
+
+.cliente-tooltip {
+    position: absolute;
+    left: 50%;
+    bottom: -34px;
+    transform: translateX(-50%) translateY(6px);
+    opacity: 0;
+    pointer-events: none;
+    background: #0f172a;
+    color: #e2e8f0;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    line-height: 1;
+    white-space: nowrap;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.cliente-card:hover .cliente-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
 }
 
 #tecnologias {
@@ -526,6 +775,30 @@
 /*Para telefono*/
 @media (max-width: 768px) {
 
+    .clientes-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .cliente-card {
+        min-height: 100px;
+    }
+
+    .cliente-card img {
+        max-width: 98px;
+        height: 32px;
+    }
+
+    .cliente-card[aria-label="Samsung"] img {
+        max-width: 124px;
+        height: 42px;
+    }
+
+    .cliente-tooltip {
+        bottom: -30px;
+        font-size: 0.8rem;
+    }
+
     .tecnologias-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 14px;
@@ -562,6 +835,38 @@
 
     .Contacto h1 {
         font-size: clamp(1.8rem, 8vw, 2.3rem);
+    }
+
+    #servicios .servicio-card {
+        min-height: 260px;
+    }
+
+    .opiniones-resumen {
+        max-width: 100%;
+        padding: 18px;
+    }
+
+    .rating-gauge {
+        width: min(88vw, 220px);
+        height: min(44vw, 110px);
+    }
+
+    .opinion-card {
+        min-height: 0;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .opinion-stars {
+        width: 100%;
+        min-width: 0;
+        padding-left: 0;
+        padding-top: 12px;
+        border-left: none;
+        border-top: 1px solid #334155;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 10px;
     }
 
     #miCarrusel {

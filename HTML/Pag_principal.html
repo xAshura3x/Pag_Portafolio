@@ -103,20 +103,53 @@
                 <div class="col-md-4 mb-3">
                     <div class="mi-card servicio-card">
                         <h3>Desarrollo Web</h3>
-                        <p>Creamos sitios modernos, rápidos y adaptados a cualquier dispositivo.</p>
+                        <p>Disenamos y desarrollamos sitios web modernos, rapidos y adaptados a cualquier dispositivo. Construimos paginas enfocadas en resultados, con estructura clara, excelente rendimiento y experiencia consistente tanto en desktop como en movil.</p>
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="mi-card servicio-card">
-                        <h3>Optimización UX/UI</h3>
-                        <p>Mejoramos la experiencia de usuario para aumentar interacción y conversiones.</p>
+                        <h3>Optimizacion UX/UI</h3>
+                        <p>Mejoramos la experiencia de usuario con interfaces claras, navegacion intuitiva y componentes pensados para guiar cada accion importante. Analizamos el recorrido del cliente para aumentar interaccion, retencion y conversiones.</p>
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="mi-card servicio-card">
                         <h3>Mantenimiento</h3>
-                        <p>Actualización continua, soporte técnico y mejoras de rendimiento.</p>
+                        <p>Realizamos mantenimiento continuo con monitoreo, soporte tecnico y actualizaciones preventivas para evitar errores. Tambien aplicamos mejoras de rendimiento y seguridad para que tu sitio se mantenga estable, rapido y confiable.</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Clientes-->
+    <section id="clientes">
+        <div class="container">
+            <h2>Nuestros clientes</h2>
+            <div class="clientes-grid mt-4">
+                <div class="cliente-card" aria-label="Google">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Logo Google">
+                    <span class="cliente-tooltip">Google</span>
+                </div>
+                <div class="cliente-card" aria-label="Microsoft">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" alt="Logo Microsoft">
+                    <span class="cliente-tooltip">Microsoft</span>
+                </div>
+                <div class="cliente-card" aria-label="Spotify">
+                    <img src="https://cdn.simpleicons.org/spotify/1DB954" alt="Logo Spotify">
+                    <span class="cliente-tooltip">Spotify</span>
+                </div>
+                <div class="cliente-card" aria-label="Samsung">
+                    <img src="https://cdn.simpleicons.org/samsung/1428A0" alt="Logo Samsung">
+                    <span class="cliente-tooltip">Samsung</span>
+                </div>
+                <div class="cliente-card" aria-label="IBM">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="Logo IBM">
+                    <span class="cliente-tooltip">IBM</span>
+                </div>
+                <div class="cliente-card" aria-label="Oracle">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg" alt="Logo Oracle">
+                    <span class="cliente-tooltip">Oracle</span>
                 </div>
             </div>
         </div>
@@ -139,6 +172,18 @@
                     <img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="Logo JavaScript">
                     <span class="tech-tooltip">JavaScript</span>
                 </div>
+                <div class="tech-card" aria-label="Node.js">
+                    <img src="https://cdn.simpleicons.org/nodedotjs/339933" alt="Logo Node.js">
+                    <span class="tech-tooltip">Node.js</span>
+                </div>
+                <div class="tech-card" aria-label="Python">
+                    <img src="https://cdn.simpleicons.org/python/3776AB" alt="Logo Python">
+                    <span class="tech-tooltip">Python</span>
+                </div>
+                <div class="tech-card" aria-label="Django">
+                    <img src="https://cdn.simpleicons.org/django/092E20" alt="Logo Django">
+                    <span class="tech-tooltip">Django</span>
+                </div>
                 <div class="tech-card" aria-label="MongoDB">
                     <img src="https://cdn.simpleicons.org/mongodb/47A248" alt="Logo MongoDB">
                     <span class="tech-tooltip">MongoDB</span>
@@ -152,21 +197,26 @@
     </section>
 
     <!--Opiniones-->
-    <section>
+    <section id="opiniones">
         <div class="container">
             <h2>Opiniones</h2>
 
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <div class="mi-card">Texto prueba -- cliente1</div>
+            <div class="opiniones-layout mt-4">
+                <div class="mi-card opiniones-resumen">
+                    <div class="rating-gauge" id="opinionesPromedioGauge" style="--rating: 0;">
+                        <div class="rating-gauge-circle" aria-hidden="true"></div>
+                        <div class="rating-gauge-center">
+                            <span id="opinionesPromedioValor" class="rating-gauge-value">0.0</span>
+                            <span class="rating-gauge-max">/ 5</span>
+                        </div>
+                    </div>
+                    <p class="rating-gauge-caption">Promedio general basado en <span id="opinionesPromedioCantidad">0</span> opiniones</p>
                 </div>
-                <div class="col-md-6 mb-3">
-                    <div class="mi-card">Texto prueba -- cliente2</div>
-                </div>
+
+                <div class="row opiniones-row" id="opinionesLista"></div>
             </div>
         </div>
     </section>
-
     <!--Contacto-->
     <section id="Contactar">
         <div class="container">
@@ -241,8 +291,9 @@
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="../Scripts/ProyectosData.js"></script>
     <script src="../Scripts/Carrusel.js"></script>
+    <script src="../Scripts/OpinionesData.js"></script>
+    <script src="../Scripts/Opiniones.js"></script>
 
 </body>
 
 </html>
-
