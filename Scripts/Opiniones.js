@@ -1,5 +1,8 @@
 (() => {
+    const INITIAL_VISIBLE = 5;
+    const LOAD_STEP = 10;
     const listaOpiniones = document.getElementById("opinionesLista");
+    const botonCargarMas = document.getElementById("opinionesCargarMas");
     const gauge = document.getElementById("opinionesPromedioGauge");
     const valueNode = document.getElementById("opinionesPromedioValor");
     const countNode = document.getElementById("opinionesPromedioCantidad");
@@ -43,11 +46,17 @@
         gauge.style.setProperty("--rating", "0");
         valueNode.textContent = "0.0";
         countNode.textContent = "0";
+        toggleLoadMore(false);
         return;
     }
 
-    const htmlOpiniones = opinionesValidas
-        .map((opinion) => {
+    const opinionesOrdenadas = opinionesValidas.slice().reverse();
+    let cantidadVisible = Math.min(INITIAL_VISIBLE, opinionesOrdenadas.length);
+
+    const renderOpiniones = () => {
+        const htmlOpiniones = opinionesOrdenadas
+            .slice(0, cantidadVisible)
+            .map((opinion) => {
             const score = opinion.calificacion.toFixed(1);
             return `
                 <div class="col-12 mb-3">
@@ -67,7 +76,11 @@
         })
         .join("");
 
-    listaOpiniones.innerHTML = htmlOpiniones;
+        listaOpiniones.innerHTML = htmlOpiniones;
+        toggleLoadMore(cantidadVisible < opinionesOrdenadas.length);
+    };
+
+    renderOpiniones();
 
     const average = opinionesValidas.reduce((total, opinion) => total + opinion.calificacion, 0) / opinionesValidas.length;
     const roundedAverage = Math.round(average * 10) / 10;
@@ -78,6 +91,19 @@
     gauge.setAttribute("aria-label", `Promedio general de ${averageText} sobre 5`);
     valueNode.textContent = averageText;
     countNode.textContent = String(opinionesValidas.length);
+
+    if (botonCargarMas) {
+        botonCargarMas.addEventListener("click", () => {
+            cantidadVisible = Math.min(cantidadVisible + LOAD_STEP, opinionesOrdenadas.length);
+            renderOpiniones();
+        });
+    }
+
+    function toggleLoadMore(show) {
+        if (!botonCargarMas) return;
+        botonCargarMas.hidden = !show;
+        botonCargarMas.disabled = !show;
+    }
 })();
 
 function buildStars(rating) {
