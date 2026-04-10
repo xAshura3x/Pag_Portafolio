@@ -6,7 +6,7 @@ const opiniones = [
     },
     {
         nombre: "Matias Vergara",
-        calificacion: 4.8,
+        calificacion: 2.0,
         comentario: "Nuestro sitio mejoro mucho en velocidad y claridad visual despues de la optimizacion. El equipo explico cada cambio, mantuvo comunicacion constante y nos dejo una base solida para seguir creciendo."
     }
 ];
