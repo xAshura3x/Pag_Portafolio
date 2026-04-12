@@ -9,10 +9,11 @@ const proyectos = [
         destacado: true
     },
     {
-        img: "../public/Img_prueba2.jpg",
-        titulo: "Prueba2",
-        resumen: "Proyecto principal del portafolio.",
-        descripcion: "Proyecto de ejemplo orientado a experiencia de usuario, navegacion rapida y presentacion visual de alto impacto.",
+        img: "../public/RedireccionamientoQR_Principal.png",
+        imgSecundaria: "../public/RedireccionamientoQR_Correo.png",
+        titulo: "Redireccionamiento QR",
+        resumen: "Proyecto de redireccionamiento mediante QR.",
+        descripcion: "Pagina que se puede acceder mediante QR estatico en el cual se podran ver las diferentes redes sociales y formas de contactar al cliente, estas estaran configuradas con una redireccion para que al momento de hacer click envie automaticamente a esa red social, en el caso de los correos se abre una ventana emergente en la cual se deben poner los datos y se envia un correo automaticamente a nuestro cliente. Las tecnologias utilizadas fueron HTML, CSS, JavaScript, ademas de EmailJS para la funcionalidad de enviar correos a nuestro cliente",
         destacado: true
     },
     {

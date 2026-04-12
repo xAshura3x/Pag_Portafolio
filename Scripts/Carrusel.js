@@ -1,5 +1,3 @@
-const contenedor = document.querySelector("#miCarrusel .carousel-inner");
-const indicadores = document.querySelector("#miCarrusel .carousel-indicators");
 const EMAILJS_CONFIG = {
     publicKey: "HI-92bgvDkJBix5R1",
     serviceId: "service_5bphcwa",
@@ -13,37 +11,167 @@ const proyectosDisponibles = typeof proyectos !== "undefined" && Array.isArray(p
 const listaProyectos = proyectosDisponibles.filter((item) => item.destacado);
 const proyectosCarrusel = listaProyectos.length > 0 ? listaProyectos : proyectosDisponibles;
 
-if (contenedor && indicadores) {
-    proyectosCarrusel.forEach((item, i) => {
-        contenedor.innerHTML += `
-            <div class="carousel-item ${i === 0 ? "active" : ""}">
-                <div class="mi-slide">
+// Carrusel de 3 tarjetas
+// Carrusel de 3 tarjetas
+let carruselIndex = 0;
+let primeraVez = true;
+let animandoCarrusel = false;
 
-                    <div class="mi-img-container">
-                        <img src="${item.img}" class="mi-img" alt="${item.titulo}">
-                        <img src="${item.imgSecundaria || item.img}" class="mi-img mi-img-secondary" alt="${item.titulo} - vista 2">
+function renderCarrusel() {
+    const contenedor = document.querySelector("#miCarrusel .carousel-inner");
+    const indicadores = document.querySelector(".carousel-indicators");
+    
+    if (!contenedor || proyectosCarrusel.length === 0) return;
+    if (animandoCarrusel && !primeraVez) return; // Evitar múltiples animaciones simultáneas
+
+    if (primeraVez) {
+        // Primera carga sin animación
+        actualizarTarjetasDirecto();
+        primeraVez = false;
+    } else {
+        // Animar cambio de tarjetas
+        animandoCarrusel = true;
+        animarCambioTarjetas();
+    }
+    
+    function actualizarTarjetasDirecto() {
+        let html = '';
+        
+        for (let i = 0; i < 3; i++) {
+            const index = (carruselIndex + i) % proyectosCarrusel.length;
+            const item = proyectosCarrusel[index];
+            const posicion = i === 0 ? 'izquierda' : i === 1 ? 'centro' : 'derecha';
+            
+            html += `
+                <div class="mi-tarjeta mi-tarjeta-${posicion}" data-indice="${index}">
+                    <img src="${item.img}" alt="${item.titulo}" class="mi-tarjeta-img">
+                    <div class="mi-tarjeta-overlay">
+                        <h3 class="mi-tarjeta-titulo">${item.titulo}</h3>
                     </div>
-
-                    <div class="mi-info">
-                        <h3>${item.titulo}</h3>
-                        <p>${item.resumen}</p>
-                        ${item.tecnologias ? `<p class="mi-tecnologias">Tecnologias: ${item.tecnologias}</p>` : ""}
-                    </div>
-
                 </div>
-            </div>
-        `;
+            `;
+        }
+        
+        contenedor.innerHTML = html;
+        actualizarIndicadores();
+    }
+    
+    function animarCambioTarjetas() {
+        const tarjetasActuales = contenedor.querySelectorAll(".mi-tarjeta");
+        
+        // Animar salida de tarjetas actuales
+        tarjetasActuales[0]?.style.animation = "none";
+        tarjetasActuales[1]?.style.animation = "none";
+        tarjetasActuales[2]?.style.animation = "none";
+        
+        // Force reflow
+        contenedor.offsetHeight;
+        
+        tarjetasActuales[0]?.style.animation = "tarjetaSaleIzq 0.6s ease-in-out forwards";
+        tarjetasActuales[1]?.style.animation = "tarjetaSaleCentro 0.6s ease-in-out forwards";
+        tarjetasActuales[2]?.style.animation = "tarjetaSaleDer 0.6s ease-in-out forwards";
+        
+        setTimeout(() => {
+            // Actualizar contenido con nuevas tarjetas
+            let html = '';
+            for (let i = 0; i < 3; i++) {
+                const index = (carruselIndex + i) % proyectosCarrusel.length;
+                const item = proyectosCarrusel[index];
+                const posicion = i === 0 ? 'izquierda' : i === 1 ? 'centro' : 'derecha';
+                
+                html += `
+                    <div class="mi-tarjeta mi-tarjeta-${posicion}" data-indice="${index}" style="animation: tarjetaEntra${posicion === 'izquierda' ? 'Izq' : posicion === 'centro' ? 'Centro' : 'Der'} 0.6s ease-in-out forwards;">
+                        <img src="${item.img}" alt="${item.titulo}" class="mi-tarjeta-img">
+                        <div class="mi-tarjeta-overlay">
+                            <h3 class="mi-tarjeta-titulo">${item.titulo}</h3>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            contenedor.innerHTML = html;
+            actualizarIndicadores();
+            
+            setTimeout(() => {
+                animandoCarrusel = false;
+            }, 600);
+        }, 300);
+    }
+    
+    function actualizarIndicadores() {
+        if (indicadores) {
+            let indicatoresHtml = '';
+            for (let i = 0; i < proyectosCarrusel.length; i++) {
+                indicatoresHtml += `
+                    <button type="button" 
+                        class="carousel-indicator-dot ${i === carruselIndex ? 'active' : ''}"
+                        data-index="${i}"
+                        aria-label="Proyecto ${i + 1}">
+                    </button>
+                `;
+            }
+            indicadores.innerHTML = indicatoresHtml;
 
-        indicadores.innerHTML += `
-            <button type="button"
-                data-bs-target="#miCarrusel"
-                data-bs-slide-to="${i}"
-                class="${i === 0 ? "active" : ""}"
-                aria-label="Proyecto ${i + 1}">
-            </button>
-        `;
-    });
+            document.querySelectorAll(".carousel-indicator-dot").forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    carruselIndex = parseInt(e.target.dataset.index);
+                    renderCarrusel();
+                });
+            });
+        }
+    }
 }
+
+function siguienteTarjeta() {
+    carruselIndex = (carruselIndex + 1) % proyectosCarrusel.length;
+    renderCarrusel();
+}
+
+function tarjetaAnterior() {
+    carruselIndex = (carruselIndex - 1 + proyectosCarrusel.length) % proyectosCarrusel.length;
+    renderCarrusel();
+}
+
+// Inicializar carrusel
+renderCarrusel();
+
+// Auto-rotación cada 10 segundos
+let autoRotarInterval;
+
+function iniciarAutoRotar() {
+    autoRotarInterval = setInterval(() => {
+        siguienteTarjeta();
+    }, 10000);
+}
+
+function detenerAutoRotar() {
+    clearInterval(autoRotarInterval);
+}
+
+function reiniciarAutoRotar() {
+    detenerAutoRotar();
+    iniciarAutoRotar();
+}
+
+iniciarAutoRotar();
+
+// Event listeners para navegación
+document.querySelector(".mi-carrusel-prev")?.addEventListener("click", () => {
+    tarjetaAnterior();
+    reiniciarAutoRotar();
+});
+
+document.querySelector(".mi-carrusel-next")?.addEventListener("click", () => {
+    siguienteTarjeta();
+    reiniciarAutoRotar();
+});
+
+// Reiniciar al hacer click en indicadores
+document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("carousel-indicator-dot")) {
+        reiniciarAutoRotar();
+    }
+});
 
 function emailJsNoConfigurado() {
     return (
