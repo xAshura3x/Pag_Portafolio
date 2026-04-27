@@ -12,8 +12,7 @@ Sitio web estatico que muestra servicios de desarrollo web, portafolio de proyec
 - Bootstrap 5.3.3
 
 ## Estructura del Proyecto
-- `index.html`: Pagina de redireccion
-- `HTML/Pag_principal.html`: Pagina principal con carrusel de proyectos destacados
+- `index.html`: Pagina principal con carrusel de proyectos destacados
 - `HTML/Proyectos.html`: Catalogo completo de proyectos con popup de detalle
 - `CSS/Estilos.css`: Estilos personalizados
 - `Scripts/ProyectosData.js`: Datos compartidos de todos los proyectos

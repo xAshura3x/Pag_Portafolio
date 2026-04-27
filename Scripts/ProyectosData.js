@@ -22,5 +22,12 @@ const proyectos = [
         resumen: "Proyecto adicional visible en el catalogo completo.",
         descripcion: "Proyecto de ejemplo para mostrar funcionalidades extra, detalle visual y descripcion extendida en ventana popup.",
         destacado: true
+    },
+    {
+        img: "../public/Img_prueba3.png",
+        titulo: "Prueba4",
+        resumen: "Proyecto adicional visible en el catalogo completo.",
+        descripcion: "Proyecto de ejemplo para mostrar funcionalidades extra, detalle visual y descripcion extendida en ventana popup.",
+        destacado: true
     }
 ];
