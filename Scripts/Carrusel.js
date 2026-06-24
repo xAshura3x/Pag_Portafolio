@@ -33,12 +33,8 @@ function resolverRutaImagen(ruta) {
     return rutaNormalizada.replace(/^(\.\.\/)+/, "");
 }
 
-// Carrusel de 3 tarjetas
+// Carrusel estilo Steam
 let carruselIndex = 0;
-let primeraVez = true;
-let animandoCarrusel = false;
-let ultimaDireccionCarrusel = 1;
-const CARRUSEL_TRANSITION_MS = 680;
 const CARRUSEL_SWIPE_MIN_PX = 50;
 const CARRUSEL_MOBILE_MEDIA_QUERY = "(max-width: 768px)";
 let carruselTouchStartX = null;
@@ -61,110 +57,98 @@ function obtenerIndicesVisibles(baseIndex) {
     ];
 }
 
+function obtenerImagenesProyecto(item) {
+    return [item.img, item.imgSecundaria].filter((ruta) => typeof ruta === "string" && ruta.trim());
+}
+
+function escaparHtml(valor) {
+    return String(valor ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
 function esModoMovilCarrusel() {
     return window.matchMedia(CARRUSEL_MOBILE_MEDIA_QUERY).matches;
 }
 
-function construirTarjetaHtml(indiceProyecto, posicion) {
+function construirPreviewHtml(indiceProyecto, posicion) {
     const item = proyectosCarrusel[indiceProyecto];
     if (!item) {
         return "";
     }
 
     return `
-        <div class="mi-tarjeta mi-tarjeta-${posicion}" data-indice="${indiceProyecto}">
-            <img src="${resolverRutaImagen(item.img)}" alt="${item.titulo}" class="mi-tarjeta-img">
-            <div class="mi-tarjeta-overlay">
-                <h3 class="mi-tarjeta-titulo">${item.titulo}</h3>
+        <button class="mi-tarjeta mi-tarjeta-${posicion}" type="button" data-indice="${indiceProyecto}" aria-label="Ver ${escaparHtml(item.titulo)}">
+            <img src="${resolverRutaImagen(item.img)}" alt="" class="mi-tarjeta-img">
+            <div class="mi-tarjeta-overlay" aria-hidden="true">
+                <h3 class="mi-tarjeta-titulo">${escaparHtml(item.titulo)}</h3>
             </div>
-        </div>
+        </button>
     `;
 }
 
-function actualizarContenidoTarjeta(tarjeta, indiceProyecto) {
+function construirProyectoDestacadoHtml(indiceProyecto) {
     const item = proyectosCarrusel[indiceProyecto];
-    if (!tarjeta || !item) {
-        return;
+    if (!item) {
+        return "";
     }
 
-    tarjeta.dataset.indice = String(indiceProyecto);
+    const imagenes = obtenerImagenesProyecto(item);
+    const imagenPrincipal = imagenes[0] || "";
+    const miniaturas = imagenes.slice(0, 4);
+    const tecnologias = item.tecnologias ? `<p class="mi-steam-tech">${escaparHtml(item.tecnologias)}</p>` : "";
 
-    const imagen = tarjeta.querySelector(".mi-tarjeta-img");
-    if (imagen) {
-        imagen.src = resolverRutaImagen(item.img);
-        imagen.alt = item.titulo;
-    }
-
-    const titulo = tarjeta.querySelector(".mi-tarjeta-titulo");
-    if (titulo) {
-        titulo.textContent = item.titulo;
-    }
+    return `
+        <article class="mi-steam-card" data-indice="${indiceProyecto}">
+            <div class="mi-steam-media">
+                <img src="${resolverRutaImagen(imagenPrincipal)}" alt="${escaparHtml(item.titulo)}" class="mi-steam-main-img">
+            </div>
+            <div class="mi-steam-info">
+                <div>
+                    <span class="mi-steam-label">Proyecto destacado</span>
+                    <h3>${escaparHtml(item.titulo)}</h3>
+                    <p class="mi-steam-description">${escaparHtml(item.resumen || item.descripcion || "")}</p>
+                    ${tecnologias}
+                </div>
+                <div class="mi-steam-thumbs" aria-label="Vistas del proyecto">
+                    ${miniaturas.map((ruta, indice) => `
+                        <img src="${resolverRutaImagen(ruta)}" alt="${escaparHtml(item.titulo)} vista ${indice + 1}">
+                    `).join("")}
+                </div>
+            </div>
+        </article>
+    `;
 }
 
 function actualizarTarjetasDirecto(contenedor, indicesVisibles) {
-    const posiciones = ["izquierda", "centro", "derecha"];
-    let html = "";
-
-    indicesVisibles.forEach((indiceProyecto, posicionIndex) => {
-        html += construirTarjetaHtml(indiceProyecto, posiciones[posicionIndex]);
-    });
-
-    contenedor.innerHTML = html;
+    contenedor.innerHTML = `
+        ${construirPreviewHtml(indicesVisibles[0], "izquierda")}
+        ${construirProyectoDestacadoHtml(indicesVisibles[1])}
+        ${construirPreviewHtml(indicesVisibles[2], "derecha")}
+    `;
+    configurarClicksPreviews(contenedor);
 }
 
 function renderTarjetaUnica(contenedor, indiceProyecto) {
-    const tarjetaUnica = contenedor.querySelector(".mi-tarjeta-unica");
-    const existeSoloUnaTarjeta = contenedor.querySelectorAll(".mi-tarjeta").length === 1;
-
-    if (tarjetaUnica && existeSoloUnaTarjeta) {
-        actualizarContenidoTarjeta(tarjetaUnica, indiceProyecto);
-        tarjetaUnica.className = "mi-tarjeta mi-tarjeta-centro mi-tarjeta-unica";
-        return;
-    }
-
-    const htmlTarjeta = construirTarjetaHtml(indiceProyecto, "centro")
-        .replace("mi-tarjeta-centro", "mi-tarjeta-centro mi-tarjeta-unica");
-
-    contenedor.innerHTML = htmlTarjeta;
+    contenedor.innerHTML = construirProyectoDestacadoHtml(indiceProyecto);
 }
 
-function animarCambioTarjetas(contenedor, indicesVisibles) {
-    const tarjetaIzquierda = contenedor.querySelector(".mi-tarjeta-izquierda");
-    const tarjetaCentro = contenedor.querySelector(".mi-tarjeta-centro");
-    const tarjetaDerecha = contenedor.querySelector(".mi-tarjeta-derecha");
+function configurarClicksPreviews(contenedor) {
+    contenedor.querySelectorAll(".mi-tarjeta").forEach((tarjeta) => {
+        tarjeta.addEventListener("click", (event) => {
+            const nuevoIndice = Number.parseInt(event.currentTarget.dataset.indice, 10);
+            if (Number.isNaN(nuevoIndice) || nuevoIndice === carruselIndex) {
+                return;
+            }
 
-    if (!tarjetaIzquierda || !tarjetaCentro || !tarjetaDerecha) {
-        actualizarTarjetasDirecto(contenedor, indicesVisibles);
-        animandoCarrusel = false;
-        return;
-    }
-
-    const tarjetas = [tarjetaIzquierda, tarjetaCentro, tarjetaDerecha];
-    const nuevasPosiciones = ultimaDireccionCarrusel > 0
-        ? ["derecha", "izquierda", "centro"]
-        : ["centro", "derecha", "izquierda"];
-
-    tarjetas.forEach((tarjeta, indice) => {
-        tarjeta.classList.remove("mi-tarjeta-izquierda", "mi-tarjeta-centro", "mi-tarjeta-derecha");
-        tarjeta.classList.add(`mi-tarjeta-${nuevasPosiciones[indice]}`);
+            carruselIndex = nuevoIndice;
+            renderCarrusel(true);
+            reiniciarAutoRotar();
+        });
     });
-
-    window.setTimeout(() => {
-        actualizarContenidoTarjeta(
-            contenedor.querySelector(".mi-tarjeta-izquierda"),
-            indicesVisibles[0]
-        );
-        actualizarContenidoTarjeta(
-            contenedor.querySelector(".mi-tarjeta-centro"),
-            indicesVisibles[1]
-        );
-        actualizarContenidoTarjeta(
-            contenedor.querySelector(".mi-tarjeta-derecha"),
-            indicesVisibles[2]
-        );
-
-        animandoCarrusel = false;
-    }, CARRUSEL_TRANSITION_MS);
 }
 
 function actualizarIndicadores(indicadores) {
@@ -192,9 +176,6 @@ function actualizarIndicadores(indicadores) {
                 return;
             }
 
-            if (nuevoIndice !== carruselIndex) {
-                ultimaDireccionCarrusel = nuevoIndice > carruselIndex ? 1 : -1;
-            }
             carruselIndex = nuevoIndice;
             renderCarrusel(!esModoMovilCarrusel());
             reiniciarAutoRotar();
@@ -210,40 +191,24 @@ function renderCarrusel(animar = true) {
         return;
     }
 
-    if (animandoCarrusel) {
-        return;
-    }
-
     if (esModoMovilCarrusel()) {
         renderTarjetaUnica(contenedor, carruselIndex);
-        primeraVez = false;
         actualizarIndicadores(indicadores);
         return;
     }
 
     const indicesVisibles = obtenerIndicesVisibles(carruselIndex);
-    const tarjetasActuales = contenedor.querySelectorAll(".mi-tarjeta");
-    const puedeAnimar = animar && !primeraVez && tarjetasActuales.length === 3;
-
-    if (!puedeAnimar) {
-        actualizarTarjetasDirecto(contenedor, indicesVisibles);
-        primeraVez = false;
-    } else {
-        animandoCarrusel = true;
-        animarCambioTarjetas(contenedor, indicesVisibles);
-    }
+    actualizarTarjetasDirecto(contenedor, indicesVisibles);
 
     actualizarIndicadores(indicadores);
 }
 
 function siguienteTarjeta() {
-    ultimaDireccionCarrusel = 1;
     carruselIndex = normalizarIndiceCarrusel(carruselIndex + 1);
     renderCarrusel(true);
 }
 
 function tarjetaAnterior() {
-    ultimaDireccionCarrusel = -1;
     carruselIndex = normalizarIndiceCarrusel(carruselIndex - 1);
     renderCarrusel(true);
 }
@@ -442,4 +407,3 @@ async function enviarForm(event){
 
     return false;
 }
-
