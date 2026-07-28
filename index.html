@@ -249,22 +249,26 @@
     </section>
 
     <div class="modal fade" id="modalContacto" tabindex="-1" aria-labelledby="contactoModalTitulo" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-contacto-dialog">
             <div class="modal-content mi-modal">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="contactoModalTitulo">Contáctanos</h5>
+                <div class="modal-header mi-modal-header">
+                    <div>
+                        <span class="mi-modal-label">OlympusDev</span>
+                        <h5 class="modal-title" id="contactoModalTitulo">Contáctanos</h5>
+                    </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body mi-modal-body">
+                    <p class="mi-modal-text">Cuéntanos qué necesitas y te responderemos con una propuesta clara para tu proyecto.</p>
                     <form id="formContacto" onsubmit="return enviarForm(event)">
-                        <label for="nombreContacto" class="visually-hidden">Nombre</label>
-                        <input id="nombreContacto" name="nombre" type="text" placeholder="Nombre" required class="form-control mb-3" autocomplete="name">
+                        <label for="nombreContacto" class="mi-form-label">Nombre</label>
+                        <input id="nombreContacto" name="nombre" type="text" placeholder="Tu nombre" required class="form-control mi-form-control" autocomplete="name">
 
-                        <label for="emailContacto" class="visually-hidden">Email</label>
-                        <input id="emailContacto" name="email" type="email" placeholder="Email" required class="form-control mb-3" autocomplete="email">
+                        <label for="emailContacto" class="mi-form-label">Email</label>
+                        <input id="emailContacto" name="email" type="email" placeholder="Email" required class="form-control mi-form-control" autocomplete="email">
 
-                        <label for="mensajeContacto" class="visually-hidden">Mensaje</label>
-                        <textarea id="mensajeContacto" name="mensaje" placeholder="Mensaje" required class="form-control mb-3" rows="4"></textarea>
+                        <label for="mensajeContacto" class="mi-form-label">Mensaje</label>
+                        <textarea id="mensajeContacto" name="mensaje" placeholder="Describe tu idea o necesidad" required class="form-control mi-form-control" rows="4"></textarea>
 
                         <button type="submit" class="mi-btn w-100">Enviar</button>
                     </form>
@@ -322,7 +326,6 @@
 </body>
 
 </html>
-
 
 
 
