@@ -1,5 +1,14 @@
 const proyectos = [
     {
+    img: "../public/gym-landing-page.png",    
+    imgSecundaria: "../public/gym-landing-page2.png",
+    titulo: "Titan Fitness - Gym Landing Page",
+    resumen:"Landing page comercial para gimnasio",
+    descripcion: "Landing page comercial para gimnasio optimizada con planes interactivos y captación de clientes.",
+    link: "https://gym-landing-demo-phi.vercel.app/",
+    destacado: true
+    },
+    {
         img: "../public/Login_Registro.png",
         imgSecundaria: "../public/Login_Registro2.png",
         titulo: "Login y Registro",
@@ -22,6 +31,6 @@ const proyectos = [
         resumen: "Catalogo de productos personalizado para emprendedores y negocios",
         descripcion: "Catalogo de productos con la funcionalidad de agregar dichos productos a un carrito y saber las existencias disponibles",
         destacado: true
-    }
+    },
     
 ];

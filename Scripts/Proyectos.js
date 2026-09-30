@@ -42,5 +42,50 @@ if (contenedorCatalogo && typeof proyectos !== "undefined" && Array.isArray(proy
         modalImagen.src = proyecto.img;
         modalImagen.alt = proyecto.titulo;
         modalDescripcion.textContent = proyecto.descripcion;
-    });
+
+        // Obtener la URL del proyecto
+        const enlaceDemo = proyecto.linkDemo || proyecto.link || proyecto.url || "";
+
+        // --- Hacer que la imagen sea interactiva y redireccione ---
+        if (enlaceDemo) {
+            modalImagen.style.cursor = "pointer";
+            modalImagen.title = "Haz clic para ver la demo en vivo";
+            modalImagen.onclick = () => window.open(enlaceDemo, "_blank");
+        } else {
+            modalImagen.style.cursor = "default";
+            modalImagen.title = "";
+            modalImagen.onclick = null;
+        }
+
+        // --- Insertar o limpiar el botón de Demo en el modal ---
+        let contenedorBoton = document.querySelector("#proyectoModalLinkContainer");
+
+            if (!contenedorBoton) {
+                contenedorBoton = document.createElement("div");
+                contenedorBoton.id = "proyectoModalLinkContainer";
+                
+                // Forzamos el centrado directamente con CSS Flexbox
+                contenedorBoton.style.display = "flex";
+                contenedorBoton.style.justifyContent = "center";
+                contenedorBoton.style.width = "100%";
+                contenedorBoton.style.marginTop = "1.5rem";
+                
+                modalDescripcion.parentNode.appendChild(contenedorBoton);
+            } else {
+                // Si ya existía, también le aseguramos el estilo centrado
+                contenedorBoton.style.display = "flex";
+                contenedorBoton.style.justifyContent = "center";
+                contenedorBoton.style.width = "100%";
+            }
+
+            if (enlaceDemo) {
+                contenedorBoton.innerHTML = `
+                    <a href="${enlaceDemo}" target="_blank" rel="noopener noreferrer" class="mi-btn mi-btn-primary" style="margin: 0 auto; display: inline-block;">
+                        Ver Demo
+                    </a>
+                `;
+            } else {
+                contenedorBoton.innerHTML = "";
+            }
+                });
 }

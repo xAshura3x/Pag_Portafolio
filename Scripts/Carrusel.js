@@ -101,10 +101,33 @@ function construirProyectoDestacadoHtml(indiceProyecto) {
     const miniaturas = imagenes.slice(0, 4);
     const tecnologias = item.tecnologias ? `<p class="mi-steam-tech">${escaparHtml(item.tecnologias)}</p>` : "";
 
+    // 1. Detectar si el proyecto tiene un link asignado
+    const enlaceDemo = item.linkDemo || item.link || item.url || "";
+    
+    // Botón de demo
+    const botonDemo = enlaceDemo ? `
+        <div class="mt-3">
+            <a href="${enlaceDemo}" target="_blank" rel="noopener noreferrer" class="mi-btn mi-btn-primary">
+                Ver Demo
+            </a>
+        </div>
+    ` : "";
+
+    // 2. Imagen principal: Si hay enlace, la envolvemos en una etiqueta <a>
+    const imgTag = `<img src="${resolverRutaImagen(imagenPrincipal)}" alt="${escaparHtml(item.titulo)}" class="mi-steam-main-img">`;
+    
+    const mediaHtml = enlaceDemo ? `
+        <a href="${enlaceDemo}" target="_blank" rel="noopener noreferrer" 
+           title="Haz clic para ver la demo en vivo" 
+           style="display: block; width: 100%; height: 100%; cursor: pointer;">
+            ${imgTag}
+        </a>
+    ` : imgTag;
+
     return `
         <article class="mi-steam-card" data-indice="${indiceProyecto}">
             <div class="mi-steam-media">
-                <img src="${resolverRutaImagen(imagenPrincipal)}" alt="${escaparHtml(item.titulo)}" class="mi-steam-main-img">
+                ${mediaHtml}
             </div>
             <div class="mi-steam-info">
                 <div>
@@ -112,10 +135,11 @@ function construirProyectoDestacadoHtml(indiceProyecto) {
                     <h3>${escaparHtml(item.titulo)}</h3>
                     <p class="mi-steam-description">${escaparHtml(item.resumen || item.descripcion || "")}</p>
                     ${tecnologias}
+                    ${botonDemo}
                 </div>
                 <div class="mi-steam-thumbs" aria-label="Vistas del proyecto">
                     ${miniaturas.map((ruta, indice) => `
-                        <img src="${resolverRutaImagen(ruta)}" alt="${escaparHtml(item.titulo)} vista ${indice + 1}">
+                        <img src="${resolverRutaImagen(ruta)}" alt="${escaparHtml(item.titulo)} vista${indice + 1}">
                     `).join("")}
                 </div>
             </div>
