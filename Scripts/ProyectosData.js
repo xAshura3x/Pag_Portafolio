@@ -9,6 +9,15 @@ const proyectos = [
     destacado: true
     },
     {
+    img: "../public/barber-reserve.png",    
+    imgSecundaria: "../public/barber-reserve2.png",
+    titulo: "Barber Reserve - Barber Shop Booking",
+    resumen:"Sistema de reserva para peluqueria",
+    descripcion: "Aplicacion para la gestion de citas en peluquerias, con capacidad de seleccion de servicios y confirmacion de reservas.",
+    link: "https://barber-reserve-demo.vercel.app/",
+    destacado: true
+    },
+    {
         img: "../public/Login_Registro.png",
         imgSecundaria: "../public/Login_Registro2.png",
         titulo: "Login y Registro",
