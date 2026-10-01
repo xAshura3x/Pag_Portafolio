@@ -1,47 +1,47 @@
 const proyectos = [
     {
-        img: "../public/gym-landing-page.webp",    
+        img: "../public/gym-landing-page.webp",
         imgSecundaria: "../public/gym-landing-page2.png",
         titulo: "Titan Fitness - Gym Landing Page",
-        resumen:"Landing page comercial para gimnasio",
-        descripcion: "Landing page comercial para gimnasio optimizada con planes interactivos y captación de clientes.",
+        resumen: "Landing page comercial para gimnasios con planes interactivos y captación de clientes.",
+        descripcion: "Plataforma comercial optimizada para la conversión de nuevos miembros en centros deportivos. Incluye planes de suscripción interactivos, tabla de horarios por disciplinas, menú adaptativo para móviles y formulario de inscripción directa.",
         link: "https://gym-landing-demo-phi.vercel.app/",
         destacado: true
     },
     {
-        img: "../public/barber-reserve.png",    
+        img: "../public/barber-reserve.png",
         imgSecundaria: "../public/barber-reserve2.png",
-        titulo: "Barber Reserve - Barber Shop Booking",
-        resumen:"Sistema de reserva para peluqueria",
-        descripcion: "Aplicacion para la gestion de citas en peluquerias, con capacidad de seleccion de servicios y confirmacion de reservas.",
+        titulo: "Barber Reservas - Barber Shop Booking",
+        resumen: "Sistema interactivo de reservas y gestión de citas para barberías y peluquerías.",
+        descripcion: "Aplicación web para la programación de citas en servicios estéticos. Permite la selección interactiva de servicios, elección de especialista, validación de fechas/horas disponibles y confirmación instantánea de reservas.",
         link: "https://barber-reserve-demo.vercel.app/",
         destacado: true
     },
     {
         img: "../public/Plantilla_catalogo.webp",
+        imgSecundaria: "",
         titulo: "Olympus POS FRESH",
-        resumen: "Catalogo de productos personalizado para una verdureria",
-        descripcion: "Catalogo de productos con la funcionalidad de agregar dichos productos a un carrito y saber las existencias disponibles ademas de poder agregar mas existencias, generar boletas imprimibles y un historial de ventas.",
-        destacado: true,
-        link: "https://catalogo-verdureria-demo.vercel.app/"
+        resumen: "Punto de venta y catálogo dinámico con gestión de stock para comecios locales.",
+        descripcion: "Sistema de caja e inventario diseñado para minimarkets y verdulerías. Incorpora catálogo dinámico con carrito de compras por kilo/unidad, control de stock en tiempo real, cálculo de vuelto, historial de ventas diarias y generación de comprobantes imprimibles.",
+        link: "https://catalogo-verdureria-demo.vercel.app/",
+        destacado: true
     },
     {
-        img: "../public/Login_Registro.png",
-        imgSecundaria: "../public/Login_Registro2.png",
-        titulo: "Login y Registro",
-        resumen: "Sistema de gestion de entrada de usuarios mediante credenciales digitales, con formularios de registro e inicio de sesion orientados a una autenticacion clara y segura.",
-        tecnologias: "HTML, CSS, JavaScript y MongoDB",
-        descripcion: "Aplicacion orientada a la gestion de acceso con formularios de inicio de sesion y registro, validaciones de datos en cliente y un flujo de autenticacion pensado para uso real. El proyecto fue desarrollado con HTML, CSS y JavaScript para la interfaz y la logica funcional, utilizando MongoDB como base de datos para almacenar credenciales, perfiles y datos clave de cada cuenta. Tambien incorpora una estructura preparada para escalar nuevas reglas de acceso y mejorar la experiencia del usuario en procesos de identificacion.",
+        img: "../public/Login_Registro.jpg",
+        imgSecundaria: "../public/Login_Registro2.jpg",
+        titulo: "Olympus Auth & Directory",
+        resumen: "Panel de administración y directorio con control de accesos basado en roles (RBAC).",
+        descripcion: "Dashboard de gestión de personal con autenticación de credenciales encriptadas mediante la API nativa Web Crypto (SHA-256). Incluye control de accesos por roles (Admin, Colaborador, Cliente), rutas protegidas, buscador dinámico en tiempo real y CRUD completo de usuarios.",
+        link: "https://olympus-auth-directory.vercel.app/",
         destacado: true
     },
     {
         img: "../public/RedireccionamientoQR_Principal.png",
         imgSecundaria: "../public/RedireccionamientoQR_Correo.png",
-        titulo: "Redireccionamiento QR",
-        resumen: "Proyecto de redireccionamiento mediante QR.",
-        descripcion: "Pagina que se puede acceder mediante QR estatico en el cual se podran ver las diferentes redes sociales y formas de contactar al cliente, estas estaran configuradas con una redireccion para que al momento de hacer click envie automaticamente a esa red social, en el caso de los correos se abre una ventana emergente en la cual se deben poner los datos y se envia un correo automaticamente a nuestro cliente. Las tecnologias utilizadas fueron HTML, CSS, JavaScript, ademas de EmailJS para la funcionalidad de enviar correos a nuestro cliente",
+        titulo: "Redireccionamiento QR & Contacto",
+        resumen: "Portal de redireccionamiento dinámico mediante códigos QR para redes y contacto.",
+        descripcion: "Plataforma de enlace rápido accesible vía código QR estático para perfiles profesionales y pymes. Permite redirigir dinámicamente a canales de contacto, redes sociales y lanzar un formulario emergente interactivo para el envío directo de correos.",
+        link: "",
         destacado: true
-    },
-    
-    
+    }
 ];
