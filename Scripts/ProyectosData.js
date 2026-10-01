@@ -1,6 +1,6 @@
 const proyectos = [
     {
-    img: "../public/gym-landing-page.png",    
+    img: "../public/gym-landing-page.webp",    
     imgSecundaria: "../public/gym-landing-page2.png",
     titulo: "Titan Fitness - Gym Landing Page",
     resumen:"Landing page comercial para gimnasio",
