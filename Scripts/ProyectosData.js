@@ -1,21 +1,29 @@
 const proyectos = [
     {
-    img: "../public/gym-landing-page.webp",    
-    imgSecundaria: "../public/gym-landing-page2.png",
-    titulo: "Titan Fitness - Gym Landing Page",
-    resumen:"Landing page comercial para gimnasio",
-    descripcion: "Landing page comercial para gimnasio optimizada con planes interactivos y captación de clientes.",
-    link: "https://gym-landing-demo-phi.vercel.app/",
-    destacado: true
+        img: "../public/gym-landing-page.webp",    
+        imgSecundaria: "../public/gym-landing-page2.png",
+        titulo: "Titan Fitness - Gym Landing Page",
+        resumen:"Landing page comercial para gimnasio",
+        descripcion: "Landing page comercial para gimnasio optimizada con planes interactivos y captación de clientes.",
+        link: "https://gym-landing-demo-phi.vercel.app/",
+        destacado: true
     },
     {
-    img: "../public/barber-reserve.png",    
-    imgSecundaria: "../public/barber-reserve2.png",
-    titulo: "Barber Reserve - Barber Shop Booking",
-    resumen:"Sistema de reserva para peluqueria",
-    descripcion: "Aplicacion para la gestion de citas en peluquerias, con capacidad de seleccion de servicios y confirmacion de reservas.",
-    link: "https://barber-reserve-demo.vercel.app/",
-    destacado: true
+        img: "../public/barber-reserve.png",    
+        imgSecundaria: "../public/barber-reserve2.png",
+        titulo: "Barber Reserve - Barber Shop Booking",
+        resumen:"Sistema de reserva para peluqueria",
+        descripcion: "Aplicacion para la gestion de citas en peluquerias, con capacidad de seleccion de servicios y confirmacion de reservas.",
+        link: "https://barber-reserve-demo.vercel.app/",
+        destacado: true
+    },
+    {
+        img: "../public/Plantilla_catalogo.webp",
+        titulo: "Olympus POS FRESH",
+        resumen: "Catalogo de productos personalizado para una verdureria",
+        descripcion: "Catalogo de productos con la funcionalidad de agregar dichos productos a un carrito y saber las existencias disponibles ademas de poder agregar mas existencias, generar boletas imprimibles y un historial de ventas.",
+        destacado: true,
+        link: "https://catalogo-verdureria-demo.vercel.app/"
     },
     {
         img: "../public/Login_Registro.png",
@@ -34,12 +42,6 @@ const proyectos = [
         descripcion: "Pagina que se puede acceder mediante QR estatico en el cual se podran ver las diferentes redes sociales y formas de contactar al cliente, estas estaran configuradas con una redireccion para que al momento de hacer click envie automaticamente a esa red social, en el caso de los correos se abre una ventana emergente en la cual se deben poner los datos y se envia un correo automaticamente a nuestro cliente. Las tecnologias utilizadas fueron HTML, CSS, JavaScript, ademas de EmailJS para la funcionalidad de enviar correos a nuestro cliente",
         destacado: true
     },
-    {
-        img: "../public/Plantilla_catalogo.png",
-        titulo: "Catalogo",
-        resumen: "Catalogo de productos personalizado para emprendedores y negocios",
-        descripcion: "Catalogo de productos con la funcionalidad de agregar dichos productos a un carrito y saber las existencias disponibles",
-        destacado: true
-    },
+    
     
 ];
