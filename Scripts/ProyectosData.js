@@ -36,6 +36,15 @@ const proyectos = [
         destacado: true
     },
     {
+        img: "../public/Calcula_Tu_Nota.png",
+        imgSecundaria: "../public/Calcula_Tu_Nota2.png",
+        titulo: "Calcula tu Nota",
+        resumen: "Aplicación web para el cálculo de notas académicas.",
+        descripcion: "Herramienta interactiva para estudiantes para calcular promedios y seguimiento académico. Permite ingresar notas, visualizar resultados en tiempo real y verificar que notas necesita para aprobar el ramo con el promedio que desee.",
+        link: "https://calcula-tu-nota.vercel.app/",
+        destacado: true
+    },
+    {
         img: "../public/RedireccionamientoQR_Principal.png",
         imgSecundaria: "../public/RedireccionamientoQR_Correo.png",
         titulo: "Redireccionamiento QR & Contacto",
